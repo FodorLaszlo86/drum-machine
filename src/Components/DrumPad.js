@@ -1,9 +1,10 @@
 import React from 'react';
+import Tab from './Tab';
 
 
 const DrumPad = () => {
     return (
-        <div>Here Comes the Drum-Pad</div>
+        <div id='drum-pad'>Here Comes the Drum-Pad</div>
     )
 }
 
