@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Tab = () => <div>Tab</div>
+const Tab = () => <div className='drum-pad'>Tab</div>
 
 export default Tab;

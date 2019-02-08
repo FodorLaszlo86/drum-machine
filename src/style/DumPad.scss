@@ -1,4 +1,11 @@
 #drum-pad {
     border: 2px solid red;
-    flex: 1;
+    margin: 2.5rem 2rem;
+    flex-basis: 30rem;
+    height: 30rem;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 1rem;
 }
