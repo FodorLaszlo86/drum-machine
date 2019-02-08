@@ -8,7 +8,7 @@ class DrumMachine extends Component {
     
     this.state = {
       powerOn: false,
-      padNames: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C']
+      tabNames: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C']
     }
   }
 
@@ -19,7 +19,7 @@ class DrumMachine extends Component {
           <h1>FCC Drum Machine</h1>
         </header>
         <section id="drum-machine__body">
-          <DrumPad />
+          <DrumPad tabNames={ this.state.tabNames } />
           <Display />
         </section>
       </div>

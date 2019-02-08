@@ -2,13 +2,11 @@ import React from 'react';
 import Tab from './Tab';
 
 
-const DrumPad = () => {
+const DrumPad = ({ tabNames }) => {
+    const tabs = tabNames.map((tab, index) => <Tab id={ tab } title={ tab } key={ index } />);
     return (
         <div id='drum-pad'>
-            <Tab />
-            <Tab />
-            <Tab />
-            <Tab />
+           { tabs }
         </div>
     )
 }
