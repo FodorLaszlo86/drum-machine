@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { soundKitOne, soundKitTwo } from './Sounds';
 import DrumPad from './DrumPad';
 import Display from './Display';
+import PowerBtn from './PowerBtn';
 
 class DrumMachine extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class DrumMachine extends Component {
     
     this.state = {
       activeSound: '',
-      powerOn: false,
+      powerOn: true,
       activeKit: 'bankOne',
       tabNames: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
       bankOne: soundKitOne,
@@ -20,47 +21,60 @@ class DrumMachine extends Component {
 
   componentDidMount() {
     document.addEventListener('keypress', this.playSoundOnKeyPress);
+    console.log(this.state.powerOn,  'componentDidMount')
+  }
+
+  togglePower = () => {
+      this.setState({
+        powerOn: !this.state.powerOn
+      })
+      console.log(this.state.powerOn);
   }
 
   playSoundOnClick = (event) => {
+    if(this.state.powerOn) {
+      let { tabNames, bankOne } = this.state;
+      let sound = event.target.childNodes[1];
+      let index = tabNames.indexOf(sound.id);
+      let soundName = bankOne[index].name;
 
-    let { tabNames, bankOne } = this.state;
-    let sound = event.target.childNodes[1];
-    let index = tabNames.indexOf(event.target.childNodes[1].id);
-    let soundName = bankOne[index].name;
+      this.setState({
+        activeSound: soundName
+      })
 
-    this.setState({
-      activeSound: soundName
-    })
-
-    sound.play();
+      sound.play();
+      }
   }
 
   playSoundOnKeyPress = (event) => {
-    let { tabNames, bankOne } = this.state;
-    const pressedChar = String.fromCharCode(event.keyCode).toUpperCase();
-    console.log(pressedChar);
-    // get the audio element to trigger with the keypress
-    const sound = document.getElementById(`${pressedChar}`);
-    const index = tabNames.indexOf(sound.id);
-    let soundName = bankOne[index].name;
+    if(this.state.powerOn) {
+      let { tabNames, bankOne } = this.state;
+      const pressedChar = String.fromCharCode(event.keyCode).toUpperCase();
 
-    this.setState({
-      activeSound: soundName
-    })
-    console.log(sound);
-    // play sound
-    if(sound) {
-      sound.play();
+      // get the audio element to trigger with the keypress
+      const sound = document.getElementById(`${pressedChar}`);
+      // get the index of the pressed element
+      const index = tabNames.indexOf(sound.id);
+      // get the name of the pressed sound
+      let soundName = bankOne[index].name;
+      // update state with the currently pressed sound's name
+      this.setState({
+        activeSound: soundName
+      })
+      
+      // play sound if exist i.e sound is not null
+      if(sound) {
+        sound.play();
+      }
     }
   }
 
   render() {
-    console.log(this.state.activeSound);
     return (
       <div className="App" id='drum-machine'>
         <header>
           <h1>FCC Drum Machine</h1>
+          <PowerBtn powerSwitch={ this.togglePower } />
         </header>
         <section id="drum-machine__body">
           <DrumPad 
