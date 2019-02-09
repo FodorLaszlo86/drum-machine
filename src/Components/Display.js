@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Display = () => {
+const Display = ({ soundName }) => {
     return (
         <div id='display'>
-            Display HERE
+            <div id="display-sound-name">{ soundName }</div>
         </div>
     )
 }
