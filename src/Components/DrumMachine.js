@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { soundKitOne, soundKitTwo } from './Sounds';
 import DrumPad from './DrumPad';
 import Display from './Display';
 
@@ -9,62 +10,10 @@ class DrumMachine extends Component {
     this.state = {
       activeSound: '',
       powerOn: false,
+      activeKit: 'bankOne',
       tabNames: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
-      bankOne: [
-          {
-            trigger: 'q',
-            name: 'Heater-1',
-            url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3' 
-          },
-
-          {
-            trigger: 'w',
-            name: 'Heater-2',
-            url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3' 
-          },
-
-          {
-            trigger: 'e',
-            name: 'Heater-3',
-            url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3' 
-          },
-
-          {
-            trigger: 'a',
-            name: 'Heater-4',
-            url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3' 
-          },
-
-          {
-            trigger: 's',
-            name: 'Heater-6',
-            url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3' 
-          },
-
-          {
-            trigger: 'd',
-            name: 'Kick-n-Hat',
-            url: 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3' 
-          },
-
-          {
-            trigger: 'z',
-            name: 'DSC-Oh',
-            url: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3' 
-          },
-
-          {
-            trigger: 'x',
-            name: 'PR4-Kick',
-            url: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3' 
-          },
-
-          {
-            trigger: 'c',
-            name: 'Cev-H2',
-            url: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3' 
-          },
-      ]
+      bankOne: soundKitOne,
+      bankTwo: soundKitTwo
     }
   }
 
