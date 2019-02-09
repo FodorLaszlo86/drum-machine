@@ -1,0 +1,15 @@
+.material-icons {
+    background-color: rgb(53, 53, 53);
+    border: 2px solid rgb(26, 26, 26);
+    color: rgb(218, 214, 214);
+    border-radius: 10rem;
+    padding: .5rem;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: color .25s;
+    box-shadow: 0 .5rem .8rem rgba(10, 10, 10, 0.863);
+
+    &:hover {
+        color: #fff;
+    }
+}
