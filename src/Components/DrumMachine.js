@@ -22,20 +22,37 @@ class DrumMachine extends Component {
     document.addEventListener('keypress', this.playSoundOnKeyPress);
   }
 
-  playSound = (event) => {
+  playSoundOnClick = (event) => {
+
     let { tabNames, bankOne } = this.state;
     let sound = event.target.childNodes[1];
     let index = tabNames.indexOf(event.target.childNodes[1].id);
     let soundName = bankOne[index].name;
+
     this.setState({
       activeSound: soundName
     })
-    console.log(event.target)
+
     sound.play();
   }
 
   playSoundOnKeyPress = (event) => {
-    console.log(event.keyCode);
+    let { tabNames, bankOne } = this.state;
+    const pressedChar = String.fromCharCode(event.keyCode).toUpperCase();
+    console.log(pressedChar);
+    // get the audio element to trigger with the keypress
+    const sound = document.getElementById(`${pressedChar}`);
+    const index = tabNames.indexOf(sound.id);
+    let soundName = bankOne[index].name;
+
+    this.setState({
+      activeSound: soundName
+    })
+    console.log(sound);
+    // play sound
+    if(sound) {
+      sound.play();
+    }
   }
 
   render() {
@@ -49,9 +66,9 @@ class DrumMachine extends Component {
           <DrumPad 
               tabNames={ this.state.tabNames } 
               sounds={ this.state.bankOne } 
-              playAudio={ this.playSound }
+              playAudio={ this.playSoundOnClick }
            />
-          <Display soundName={this.state.activeSound}/>
+          <Display soundName={this.state.activeSound} />
         </section>
       </div>
     );
