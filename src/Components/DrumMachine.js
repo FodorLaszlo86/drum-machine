@@ -27,7 +27,6 @@ class DrumMachine extends Component {
   togglePower = () => {
       this.setState({
         powerOn: !this.state.powerOn,
-        activeKit: '',
         activeSound: ''
       })
   }
