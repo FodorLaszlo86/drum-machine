@@ -19,7 +19,7 @@ const BankSwitch = ({ changeKit }) => {
                 >
                 Bank Two
             </button>
-            
+
         </div>
     )
 }

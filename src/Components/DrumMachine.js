@@ -22,21 +22,24 @@ class DrumMachine extends Component {
 
   componentDidMount() {
     document.addEventListener('keypress', this.playSoundOnKeyPress);
-    console.log(this.state.activeKit,  'from componentDidMount')
   }
 
   togglePower = () => {
       this.setState({
-        powerOn: !this.state.powerOn
+        powerOn: !this.state.powerOn,
+        activeKit: '',
+        activeSound: ''
       })
   }
 
   changeSoundKits = (event) => {
-    const useSoundKit = event.target.id;
-    this.setState({
-      activeKit: useSoundKit
-    })
-    console.log(this.state.activeKit, 'after changeSoundKit');
+    if(this.state.powerOn) {
+      const useSoundKit = event.target.id;
+      this.setState({
+        activeKit: useSoundKit,
+        activeSound: ''
+      })
+    }
   }
 
   playSoundOnClick = (event) => {
@@ -106,7 +109,7 @@ class DrumMachine extends Component {
         </header>
         <section id="drum-machine__body">
           { activeDrumPad }
-          <Display soundName={this.state.activeSound} />
+          <Display soundName={this.state.activeSound} activeKit={ this.state.activeKit } />
           <BankSwitch changeKit={ this.changeSoundKits } />
         </section>
       </div>
