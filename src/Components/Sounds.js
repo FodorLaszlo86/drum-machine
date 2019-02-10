@@ -61,19 +61,19 @@ export const soundKitTwo = [
     {
         trigger: 'q',
         name: 'Chord-1',
-        url: '‘https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3' 
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3' 
     },
 
     {
         trigger: 'w',
         name: 'Chord-2',
-        url: '‘https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3' 
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3' 
     },
 
     {
         trigger: 'e',
         name: 'Chord-3',
-        url: '‘https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3' 
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3' 
     },
 
     {
@@ -109,6 +109,6 @@ export const soundKitTwo = [
     {
         trigger: 'c',
         name: 'BRK-SNR',
-        url: '‘https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3' 
+        url: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3' 
     }
 ]

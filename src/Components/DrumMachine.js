@@ -3,6 +3,7 @@ import { soundKitOne, soundKitTwo } from './Sounds';
 import DrumPad from './DrumPad';
 import Display from './Display';
 import PowerBtn from './PowerBtn';
+import BankSwitch from './BankSwitch';
 
 class DrumMachine extends Component {
   constructor(props) {
@@ -21,22 +22,35 @@ class DrumMachine extends Component {
 
   componentDidMount() {
     document.addEventListener('keypress', this.playSoundOnKeyPress);
-    console.log(this.state.powerOn,  'componentDidMount')
+    console.log(this.state.activeKit,  'from componentDidMount')
   }
 
   togglePower = () => {
       this.setState({
         powerOn: !this.state.powerOn
       })
-      console.log(this.state.powerOn);
+  }
+
+  changeSoundKits = (event) => {
+    const useSoundKit = event.target.id;
+    this.setState({
+      activeKit: useSoundKit
+    })
+    console.log(this.state.activeKit, 'after changeSoundKit');
   }
 
   playSoundOnClick = (event) => {
     if(this.state.powerOn) {
-      let { tabNames, bankOne } = this.state;
+      let { tabNames, bankOne, bankTwo, activeKit } = this.state;
       let sound = event.target.childNodes[1];
       let index = tabNames.indexOf(sound.id);
-      let soundName = bankOne[index].name;
+      let soundName;
+
+      if(activeKit === 'bankOne') {
+        soundName = bankOne[index].name;
+      } else {
+        soundName = bankTwo[index].name;
+      }
 
       this.setState({
         activeSound: soundName
@@ -48,28 +62,42 @@ class DrumMachine extends Component {
 
   playSoundOnKeyPress = (event) => {
     if(this.state.powerOn) {
-      let { tabNames, bankOne } = this.state;
+      let { tabNames, bankOne, bankTwo, activeKit } = this.state;
       const pressedChar = String.fromCharCode(event.keyCode).toUpperCase();
 
       // get the audio element to trigger with the keypress
       const sound = document.getElementById(`${pressedChar}`);
+      console.log(sound);
       // get the index of the pressed element
-      const index = tabNames.indexOf(sound.id);
-      // get the name of the pressed sound
-      let soundName = bankOne[index].name;
-      // update state with the currently pressed sound's name
-      this.setState({
-        activeSound: soundName
-      })
-      
-      // play sound if exist i.e sound is not null
       if(sound) {
-        sound.play();
+        const index = tabNames.indexOf(sound.id);
+        // get the name of the pressed sound
+        let soundName;
+        // update state with the currently pressed sound's name
+        if(activeKit === 'bankOne') {
+          soundName = bankOne[index].name;
+        } else {
+          soundName = bankTwo[index].name;
+        }
+        
+        this.setState({
+          activeSound: soundName
+        })
+        
+        // play sound if exist i.e sound is not null
+          sound.play();
       }
     }
   }
 
   render() {
+
+    let activeDrumPad;
+    if(this.state.activeKit === 'bankOne') {
+       activeDrumPad = <DrumPad tabNames={ this.state.tabNames } sounds={ this.state.bankOne } playAudio={ this.playSoundOnClick } /> 
+    } else {
+      activeDrumPad = <DrumPad tabNames={ this.state.tabNames } sounds={ this.state.bankTwo } playAudio={ this.playSoundOnClick } />
+    }
     return (
       <div className="App" id='drum-machine'>
         <header>
@@ -77,12 +105,9 @@ class DrumMachine extends Component {
           <PowerBtn powerSwitch={ this.togglePower } />
         </header>
         <section id="drum-machine__body">
-          <DrumPad 
-              tabNames={ this.state.tabNames } 
-              sounds={ this.state.bankOne } 
-              playAudio={ this.playSoundOnClick }
-           />
+          { activeDrumPad }
           <Display soundName={this.state.activeSound} />
+          <BankSwitch changeKit={ this.changeSoundKits } />
         </section>
       </div>
     );

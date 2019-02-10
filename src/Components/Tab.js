@@ -9,11 +9,11 @@ const Tab = props => {
                 src={ tabSound.url }
                 id={ props.id } 
                 className='clip' 
-                volume={1} 
+                volume={ 1 } 
                 type='audio/mp3'
-                autoPlay={false}
-                loop={false}>
-            </audio>
+                autoPlay={ false }
+                loop={ false } 
+            />
         </div>
     )
 }
