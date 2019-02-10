@@ -1,11 +1,37 @@
-#display {
+.display {
     flex: 1;
-    border: 2px solid blue;
-    margin: 2.5rem 2rem 2.5rem 0;
+    height: 8rem;
+    background-color: #30b0c7;
+    display: flex;
+    flex-direction: column;
+    border-radius: .4rem;
 
-    &-sound-name {
-        border: 2px solid green;
-        width: 80%;
-        height: 5rem;
+    &__primary {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        letter-spacing: .5rem;
+        color: rgb(33, 29, 77);
     }
+
+    &__secondary {
+        display: flex;
+        justify-content: space-around;
+        padding: .5rem 0;
+        color: rgba(126, 126, 126, 0.9);
+    }
+
+    &__activekit {
+
+    }
+
+    &__volume {
+
+    }
+}
+
+.drum-machine__display {
+    margin: 2.5rem;
+    flex: 1;
 }

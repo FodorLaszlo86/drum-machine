@@ -2,11 +2,11 @@ import React from 'react';
 
 const BankSwitch = ({ changeKit }) => {
     return (
-        <div id="bank-switch-panel">
+        <div className="bank-switch__panel">
 
             <button
                  id='bankOne' 
-                 className='bank-btn'
+                 className='bank__btn'
                  onClick={ changeKit }
                 >
                 Bank One
@@ -14,7 +14,7 @@ const BankSwitch = ({ changeKit }) => {
 
             <button
                 id='bankTwo' 
-                className='bank-btn'
+                className='bank__btn bank__btn--inactive'
                 onClick={ changeKit }
                 >
                 Bank Two

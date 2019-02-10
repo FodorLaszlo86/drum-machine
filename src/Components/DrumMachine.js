@@ -118,10 +118,12 @@ class DrumMachine extends Component {
 
         <section id="drum-machine__body">
           { activeDrumPad }
-          <Display soundName={this.state.activeSound} activeKit={ this.state.activeKit } />
-          <BankSwitch changeKit={ this.changeSoundKits } />
+          <div className='drum-machine__display'>
+            <Display soundName={this.state.activeSound} activeKit={ this.state.activeKit } />
+            <BankSwitch changeKit={ this.changeSoundKits } />
+          </div>
         </section>
-        
+
       </div>
     );
   }
