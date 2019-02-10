@@ -59,7 +59,7 @@ class DrumMachine extends Component {
       })
 
       sound.play();
-      }
+    }
   }
 
   playSoundOnKeyPress = (event) => {
@@ -87,7 +87,7 @@ class DrumMachine extends Component {
         })
         
         // play sound if exist i.e sound is not null
-          sound.play();
+        sound.play();
       }
     }
   }
@@ -96,21 +96,32 @@ class DrumMachine extends Component {
 
     let activeDrumPad;
     if(this.state.activeKit === 'bankOne') {
-       activeDrumPad = <DrumPad tabNames={ this.state.tabNames } sounds={ this.state.bankOne } playAudio={ this.playSoundOnClick } /> 
+       activeDrumPad = <DrumPad 
+                            tabNames={ this.state.tabNames } 
+                            sounds={ this.state.bankOne } 
+                            playAudio={ this.playSoundOnClick } 
+                      /> 
     } else {
-      activeDrumPad = <DrumPad tabNames={ this.state.tabNames } sounds={ this.state.bankTwo } playAudio={ this.playSoundOnClick } />
+      activeDrumPad = <DrumPad 
+                            tabNames={ this.state.tabNames } 
+                            sounds={ this.state.bankTwo } 
+                            playAudio={ this.playSoundOnClick } 
+                      />
     }
     return (
       <div className="App" id='drum-machine'>
-        <header>
-          <h1>FCC Drum Machine</h1>
+
+        <header id="app__header">
+          <h1 id='app__title'>FCC Drum Machine</h1>
           <PowerBtn powerSwitch={ this.togglePower } />
         </header>
+
         <section id="drum-machine__body">
           { activeDrumPad }
           <Display soundName={this.state.activeSound} activeKit={ this.state.activeKit } />
           <BankSwitch changeKit={ this.changeSoundKits } />
         </section>
+        
       </div>
     );
   }
