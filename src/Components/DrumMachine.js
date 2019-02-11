@@ -17,13 +17,15 @@ class DrumMachine extends Component {
       tabNames: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
       bankOne: soundKitOne,
       bankTwo: soundKitTwo,
-      volume: 0
+      volume: .62
     }
   }
 
 
   componentDidMount() {
     document.addEventListener('keypress', this.playSoundOnKeyPress);
+    const volCtr = document.querySelector('input[type="range"]');
+    console.log(volCtr);
   }
 
   togglePower = () => {
@@ -94,6 +96,12 @@ class DrumMachine extends Component {
     }
   }
 
+  changeVolume = (event) => {
+    this.setState({
+      volume: event.target.value
+    })
+  }
+
   render() {
 
     let activeDrumPad;
@@ -101,13 +109,15 @@ class DrumMachine extends Component {
        activeDrumPad = <DrumPad 
                             tabNames={ this.state.tabNames } 
                             sounds={ this.state.bankOne } 
-                            playAudio={ this.playSoundOnClick } 
+                            playAudio={ this.playSoundOnClick }
+                            loudness={ this.state.volume } 
                       /> 
     } else {
       activeDrumPad = <DrumPad 
                             tabNames={ this.state.tabNames } 
                             sounds={ this.state.bankTwo } 
                             playAudio={ this.playSoundOnClick } 
+                            loudness={ this.state.volume }
                       />
     }
     return (
@@ -121,9 +131,9 @@ class DrumMachine extends Component {
         <section id="drum-machine__body">
           { activeDrumPad }
           <div className='drum-machine__display'>
-            <Display soundName={this.state.activeSound} activeKit={ this.state.activeKit } />
+            <Display soundName={this.state.activeSound} activeKit={ this.state.activeKit } currentVol={ this.state.volume }/>
             <BankSwitch changeKit={ this.changeSoundKits } />
-            <VolumeCtrl />
+            <VolumeCtrl volume={ this.changeVolume } volNow={ this.state.volume } />
           </div>
         </section>
 

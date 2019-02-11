@@ -2,7 +2,7 @@ import React from 'react';
 import Tab from './Tab';
 
 
-const DrumPad = ({ tabNames, sounds, playAudio }) => {
+const DrumPad = ({ tabNames, sounds, playAudio, loudness }) => {
     const tabs = tabNames.map((tab, index) => 
                     <Tab 
                         id={ tab } 
@@ -10,6 +10,7 @@ const DrumPad = ({ tabNames, sounds, playAudio }) => {
                         key={ index } 
                         tabSound={ sounds[index] } 
                         audioPlayOnClick={ playAudio } 
+                        loudness={loudness}
                     />
                 );
     return (
