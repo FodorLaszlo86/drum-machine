@@ -4,6 +4,7 @@ import DrumPad from './DrumPad';
 import Display from './Display';
 import PowerBtn from './PowerBtn';
 import BankSwitch from './BankSwitch';
+import VolumeCtrl from './VolumeCtrl';
 
 class DrumMachine extends Component {
   constructor(props) {
@@ -15,7 +16,8 @@ class DrumMachine extends Component {
       activeKit: 'bankOne',
       tabNames: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
       bankOne: soundKitOne,
-      bankTwo: soundKitTwo
+      bankTwo: soundKitTwo,
+      volume: 0
     }
   }
 
@@ -121,6 +123,7 @@ class DrumMachine extends Component {
           <div className='drum-machine__display'>
             <Display soundName={this.state.activeSound} activeKit={ this.state.activeKit } />
             <BankSwitch changeKit={ this.changeSoundKits } />
+            <VolumeCtrl />
           </div>
         </section>
 
