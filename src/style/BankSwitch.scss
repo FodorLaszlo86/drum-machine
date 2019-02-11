@@ -12,6 +12,10 @@
         border: 1px solid rgba(14, 13, 13, 0.733);
         border-radius: 10rem;
         box-shadow: 0 .2rem 1rem rgba(0, 0, 0, 0.774);
+
+        &:focus {
+            outline: none;
+        }
     }
 
     .bank__btn--inactive {

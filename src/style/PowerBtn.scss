@@ -1,13 +1,14 @@
 .material-icons {
-    background-color: rgb(53, 53, 53);
-    border: 2px solid rgb(90, 90, 90);
-    color: rgb(218, 214, 214);
+    background-image: radial-gradient( rgb(159, 251, 251), #000000); 
+    border: 1px solid rgb(138, 132, 132);
+    color:  rgb(250, 250, 250);
     border-radius: 10rem;
     padding: .5rem;
     font-size: 3rem;
     cursor: pointer;
     transition: color .25s;
-    box-shadow: 0 .5rem .8rem rgba(10, 10, 10, 0.863);
+    box-shadow: 0 0 5px 3px #fff, 0 0 6px 3px rgb(241, 138, 241), 0 0 8px 6px #0ff;
+
 
     &:hover {
         color: #fff;
