@@ -12,7 +12,7 @@ class DrumMachine extends Component {
     
     this.state = {
       activeSound: '',
-      powerOn: true,
+      powerOn: false,
       activeKit: 'bankOne',
       tabNames: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
       bankOne: soundKitOne,
@@ -28,11 +28,12 @@ class DrumMachine extends Component {
     console.log(volCtr);
   }
 
-  togglePower = () => {
+  togglePower = (e) => {
       this.setState({
         powerOn: !this.state.powerOn,
         activeSound: ''
       })
+    e.target.classList.toggle('power-on')
   }
 
   changeSoundKits = (event) => {
