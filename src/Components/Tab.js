@@ -10,7 +10,7 @@ const Tab = props => {
                 src={ tabSound.url }
                 id={ props.id } 
                 className='clip' 
-                volume={ .2 } 
+                volume={ loudness } 
                 type='audio/mp3'
                 autoPlay={ false }
                 loop={ false } 
