@@ -6,6 +6,7 @@ import PowerBtn from './PowerBtn';
 import BankSwitch from './BankSwitch';
 import VolumeCtrl from './VolumeCtrl';
 
+
 class DrumMachine extends Component {
   constructor(props) {
     super(props);
@@ -17,34 +18,55 @@ class DrumMachine extends Component {
       tabNames: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
       bankOne: soundKitOne,
       bankTwo: soundKitTwo,
-      volume: .62
+      volume: 0.62
     }
   }
 
 
   componentDidMount() {
     document.addEventListener('keypress', this.playSoundOnKeyPress);
-    const volCtr = document.querySelector('input[type="range"]');
-    console.log(volCtr);
   }
 
-  togglePower = (e) => {
+  togglePower = event => {
       this.setState({
         powerOn: !this.state.powerOn,
-        activeSound: ''
+        activeSound: '',
+        activeKit: 'bankOne'
       })
-    e.target.classList.toggle('power-on')
+    event.target.classList.toggle('power-on')
+
+    document.getElementById('bankOne').classList.add('bank__btn--active');
+
+    if(this.state.powerOn) {
+      document.getElementById('bankOne').classList.remove('bank__btn--active');
+      document.getElementById('bankTwo').classList.remove('bank__btn--active');
+    } 
+
   }
 
-  changeSoundKits = (event) => {
+
+  changeSoundKits = event => {
+    const useSoundKit = event.target.id;
+    const switchButtons = Array.from(event.target.parentNode.children);
+    // click on the other removes the class from the other and adds to the clicked one
     if(this.state.powerOn) {
-      const useSoundKit = event.target.id;
+
       this.setState({
         activeKit: useSoundKit,
         activeSound: ''
       })
-    }
+
+    
+      switchButtons.map(btn => {
+        if(this.state.activeKit === btn.id) {
+          return btn.classList.add('bank__btn--active');
+        } else {
+          return btn.classList.remove('bank__btn--active');
+        }
+      })
+    } 
   }
+
 
   playSoundOnClick = (event) => {
     if(this.state.powerOn) {
@@ -74,7 +96,6 @@ class DrumMachine extends Component {
 
       // get the audio element to trigger with the keypress
       const sound = document.getElementById(`${pressedChar}`);
-      console.log(sound);
       // get the index of the pressed element
       if(sound) {
         const index = tabNames.indexOf(sound.id);
@@ -98,9 +119,11 @@ class DrumMachine extends Component {
   }
 
   changeVolume = (event) => {
-    this.setState({
-      volume: event.target.value
-    })
+    if(this.state.powerOn) {
+      this.setState({
+        volume: event.target.value
+      })
+    }
   }
 
   render() {
@@ -134,7 +157,7 @@ class DrumMachine extends Component {
           <div className='drum-machine__display'>
             <Display soundName={this.state.activeSound} activeKit={ this.state.activeKit } currentVol={ this.state.volume }/>
             <BankSwitch changeKit={ this.changeSoundKits } />
-            <VolumeCtrl volume={ this.changeVolume } volNow={ this.state.volume } />
+            <VolumeCtrl volumeCtrl={ this.changeVolume } volNow={ this.state.volume } />
           </div>
         </section>
 

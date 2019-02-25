@@ -5,6 +5,7 @@
 @import './Display.scss';
 @import './PowerBtn.scss';
 @import './Tab.scss';
+@import './VolumeCtrl.scss';
 
 * {
     margin: 0;
@@ -15,7 +16,11 @@
 html {
     font-size: 62.5%;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
+
+    @media only screen and (max-width: 725px) {
+            font-size: 56%;
+    }
 
 }
 
@@ -24,5 +29,6 @@ body {
     box-sizing: inherit;
     background-image: linear-gradient(45deg, #568ca7, #323162);
     background-repeat: no-repeat;
+    background-size: cover;
 
 }

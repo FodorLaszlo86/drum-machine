@@ -1,9 +1,9 @@
 import React from 'react';
 
-const VolumeCtrl = (props) => {
+const VolumeCtrl = props => {
     return (
-        <div>
-            <input type='range' min='0' max='1' step='0.01' onChange={ props.volume } value={props.volNow} />
+        <div id="volCtrl">
+            <input type='range' min='0' max='1' step='0.01' onChange={ props.volumeCtrl } value={props.volNow} />
         </div>
     )
 }

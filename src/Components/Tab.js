@@ -2,7 +2,6 @@ import React from 'react';
 
 const Tab = props => {
     let { tabSound, audioPlayOnClick, loudness } = props;
-    console.log('loudness from Tab', loudness);
     return (
         <div className='drum-pad' id={ tabSound.name } onClick={ audioPlayOnClick }>
             {  props.title }
@@ -10,8 +9,9 @@ const Tab = props => {
                 src={ tabSound.url }
                 id={ props.id } 
                 className='clip' 
+                muted={ false }
                 volume={ loudness } 
-                type='audio/mp3'
+                type='audio/mpeg'
                 autoPlay={ false }
                 loop={ false } 
             />
