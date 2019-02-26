@@ -93,7 +93,7 @@ class DrumMachine extends Component {
       let sound = event.target.childNodes[1];
       let index = tabNames.indexOf(sound.id);
       let soundName;
-
+      // get the current sound's name
       if(activeKit === 'bankOne') {
         soundName = bankOne[index].name;
       } else {
@@ -167,6 +167,7 @@ class DrumMachine extends Component {
                             loudness={ this.state.volume }
                       />
     }
+
     return (
       <div className="App" id='drum-machine'>
 
