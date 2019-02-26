@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FodorLaszlo86/fcc-drum-machine.git"
+    "url": "https://github.com/FodorLaszlo86/drum-machine.git"
   },
   "keywords": [
     "React",
@@ -44,5 +44,5 @@
   "bugs": {
     "url": "https://github.com/FodorLaszlo86/fcc-drum-machine/issues"
   },
-  "homepage": "https://fodorlaszlo86.github.io/fcc-drum-machine"
+  "homepage": "https://fodorlaszlo86.github.io/drum-machine/"
 }
