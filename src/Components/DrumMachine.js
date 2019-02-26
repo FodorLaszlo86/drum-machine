@@ -71,11 +71,18 @@ class DrumMachine extends Component {
     } 
   }
 
-  applyDrumPadEffect = (e) => {
-    const hitPad = e.target;
+  applyDrumPadEffectOnClick = event => {
+    const hitPad = event.target;
     hitPad.classList.add('hit-pad-style');
     setTimeout(() => {
       hitPad.classList.remove('hit-pad-style');
+    }, 50)
+  }
+
+  applyDrumPadEffectOnKeyPress = tabKeyPressed => {
+    tabKeyPressed.classList.add('hit-pad-style');
+    setTimeout(() => {
+      tabKeyPressed.classList.remove('hit-pad-style');
     }, 50)
   }
 
@@ -97,7 +104,7 @@ class DrumMachine extends Component {
         activeSound: soundName
       })
 
-      this.applyDrumPadEffect(event);
+      this.applyDrumPadEffectOnClick(event);
 
       sound.play();
     }
@@ -113,6 +120,7 @@ class DrumMachine extends Component {
       // get the index of the pressed element
       if(sound) {
         const index = tabNames.indexOf(sound.id);
+        const selectedTab = document.getElementById(`${tabNames[index]}`).parentElement;
         // get the name of the pressed sound
         let soundName;
         // update state with the currently pressed sound's name
@@ -126,6 +134,7 @@ class DrumMachine extends Component {
           activeSound: soundName
         })
         
+        this.applyDrumPadEffectOnKeyPress(selectedTab);
         // play sound if exist i.e sound is not null
         sound.play();
       }
