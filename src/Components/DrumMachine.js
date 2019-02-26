@@ -22,33 +22,38 @@ class DrumMachine extends Component {
     }
   }
 
-
   componentDidMount() {
     document.addEventListener('keypress', this.playSoundOnKeyPress);
   }
 
   togglePower = event => {
+
+    const bankOneBtn =  document.getElementById('bankOne');
+    const bankTwoBtn =  document.getElementById('bankTwo');
+
       this.setState({
         powerOn: !this.state.powerOn,
         activeSound: '',
         activeKit: 'bankOne'
       })
+
     event.target.classList.toggle('power-on')
 
-    document.getElementById('bankOne').classList.add('bank__btn--active');
-
     if(this.state.powerOn) {
-      document.getElementById('bankOne').classList.remove('bank__btn--active');
-      document.getElementById('bankTwo').classList.remove('bank__btn--active');
-    } 
+      bankOneBtn.classList.remove('bank__btn--active');
+      bankTwoBtn.classList.remove('bank__btn--active');
+    } else {
+      bankOneBtn.classList.add('bank__btn--active');
+    }
 
   }
 
 
   changeSoundKits = event => {
     const useSoundKit = event.target.id;
-    const switchButtons = Array.from(event.target.parentNode.children);
-    // click on the other removes the class from the other and adds to the clicked one
+    const bankOneActive =  document.getElementById('bankOne');
+    const bankTwoActive =  document.getElementById('bankTwo');
+
     if(this.state.powerOn) {
 
       this.setState({
@@ -56,14 +61,13 @@ class DrumMachine extends Component {
         activeSound: ''
       })
 
-    
-      switchButtons.map(btn => {
-        if(this.state.activeKit === btn.id) {
-          return btn.classList.add('bank__btn--active');
-        } else {
-          return btn.classList.remove('bank__btn--active');
-        }
-      })
+      if(this.state.activeKit === 'bankTwo' && !Array.from(bankOneActive.classList).includes('bank__btn--active')) {
+        bankOneActive.classList.add('bank__btn--active');
+        bankTwoActive.classList.remove('bank__btn--active');
+      } else {
+        bankTwoActive.classList.add('bank__btn--active');
+        bankOneActive.classList.remove('bank__btn--active');
+      }
     } 
   }
 
