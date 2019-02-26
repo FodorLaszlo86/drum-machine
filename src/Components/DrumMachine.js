@@ -71,6 +71,14 @@ class DrumMachine extends Component {
     } 
   }
 
+  applyDrumPadEffect = (e) => {
+    const hitPad = e.target;
+    hitPad.classList.add('hit-pad-style');
+    setTimeout(() => {
+      hitPad.classList.remove('hit-pad-style');
+    }, 50)
+  }
+
 
   playSoundOnClick = (event) => {
     if(this.state.powerOn) {
@@ -88,6 +96,8 @@ class DrumMachine extends Component {
       this.setState({
         activeSound: soundName
       })
+
+      this.applyDrumPadEffect(event);
 
       sound.play();
     }
